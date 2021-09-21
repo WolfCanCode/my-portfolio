@@ -1,0 +1,53 @@
+.container {
+    position:fixed;
+    height:60px;
+    width:98vw;
+    bottom: 25px;
+}
+
+.overlay {
+    position:absolute;
+    border-radius:8px;
+    height:60px;
+    width:100%;
+    opacity: .80;
+    backdrop-filter: blur(50px);
+    background-color: rgba(0,0,0,.8);
+    text-align: center;
+    z-index: 1;
+}
+
+.appContainer {
+    display:flex;
+    position:absolute;
+    height:60px;
+    width:100%;
+    justify-content: center;
+    z-index: 2;
+}
+
+.appIcon {
+    content:" ";
+    height:50px;
+    width:50px;
+    background-repeat:no-repeat;
+    background-size: auto 35px;
+    background-position: center;
+    margin: 5px 5px;
+    border-radius: 5px;
+    cursor:pointer;
+    transition: .2s ease-out all;
+}
+
+.appIcon:active {
+    background-size: auto 28px;
+    transition: .1s ease-in background-position-y;
+}
+
+.appIcon:hover {
+    background-color: rgba(39, 39, 39, 0.5);
+}
+
+.personalApp {
+    background-image: url("https://i.ibb.co/bL3Y0xV/profile-Logo.png");
+}
