@@ -9,4 +9,5 @@
   background-image: url("https://i.ibb.co/8d9rw7n/Windows-11-Default-Dark-Wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
