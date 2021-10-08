@@ -11,7 +11,7 @@
     height:60px;
     width:100%;
     opacity: .80;
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(5px);
     background-color: rgba(0,0,0,.8);
     text-align: center;
     z-index: 1;
@@ -24,6 +24,7 @@
     width:100%;
     justify-content: center;
     z-index: 2;
+    backdrop-filter: blur(5px);
 }
 
 .appIcon {
@@ -50,4 +51,8 @@
 
 .personalApp {
     background-image: url("https://i.ibb.co/bL3Y0xV/profile-Logo.png");
+}
+
+.info {
+    background-image: url("https://i.ibb.co/p4RVK6Q/info.png");
 }
