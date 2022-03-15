@@ -31,21 +31,11 @@ export const defaultWindowStyle = {
   isMax: false,
 };
 
-/**
- * An atom that stores the IDs of all RunningApps on the canvas.
- *
- * https://recoiljs.org/docs/api-reference/core/atom
- */
 export const runningAppsState = atom<number[]>({
   key: "runningApps",
   default: [],
 });
 
-/**
- * An atomFamily that stores the states for all RunningApps.
- *
- * https://recoiljs.org/docs/api-reference/utils/atomFamily
- */
 export const runningAppState = atomFamily<RunningAppState, number>({
   key: "runningApp",
   default: () => ({
@@ -55,17 +45,11 @@ export const runningAppState = atomFamily<RunningAppState, number>({
   }),
 });
 
-/**
- * An atom that stores which RunningApp is currently selected.
- */
 export const selectedAppIdState = atom<number>({
   key: "selectedRunningAppId",
   default: -1,
 });
 
-/**
- * A selector that returns the selected RunningApp's state.
- */
 export const selectedRunningAppState = selector<RunningAppState | undefined>({
   key: "selectedRunningApp",
   get: ({ get }) => {
@@ -84,12 +68,6 @@ export const selectedRunningAppState = selector<RunningAppState | undefined>({
   },
 });
 
-/**
- * A selectorFamily that returns true if the provided
- * RunningApp is currently selected.
- *
- * https://recoiljs.org/docs/api-reference/utils/selectorFamily
- */
 export const isSelectedState = selectorFamily({
   key: "isSelected",
   get:
