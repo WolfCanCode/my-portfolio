@@ -9,6 +9,8 @@ import {
   runningAppState,
   defaultWindowStyle,
   selectedAppIdState,
+  isSelectedState,
+  isRunningAppState,
 } from "~/atoms";
 
 /**
@@ -18,7 +20,6 @@ import {
 export const useOpenApp = () => {
   const [runningApps, setRunningApps] = useRecoilState(runningAppsState);
   const setSelected = useSetRecoilState(selectedAppIdState);
-
   return useRecoilCallback(
     ({ set, snapshot }) => {
       return (title: string, appId: number) => {
@@ -28,8 +29,12 @@ export const useOpenApp = () => {
         if (currentApp.contents.title) {
           set(runningAppState(appId), {
             ...currentApp.contents,
-            style: { ...currentApp.contents.style, isMin: false },
+            style: {
+              ...currentApp.contents.style,
+              isMin: false,
+            },
           });
+
           return;
         }
         setRunningApps((runningApps) => [...runningApps, appId]);

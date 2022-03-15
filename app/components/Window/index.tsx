@@ -14,10 +14,10 @@ export const Window = ({ id }: { id: number }) => {
   return currentApp ? (
     <Resizable id={id}>
       <div
-        className={`fixed z-10 left-0 top-0 bg-white shadow-lg rounded-lg p-1 border-[length:1px] border-gray-200 transition-transform duration-250 ease-out`}
+        className={`fixed z-10 left-0 top-0 bg-white/50 backdrop-blur-md shadow-lg rounded-lg p-1 border-[length:1px] border-gray-200 transition-transform duration-250 ease-out`}
         style={{
-          width: `${style.width}px`,
-          height: `${style.height}px`,
+          width: !style.isMax ? `${style.width}px` : "100vw",
+          height: !style.isMax ? `${style.height}px` : "100vh",
           top: style.top,
           left: style.left,
           zIndex: isSelected ? 50 : 10,

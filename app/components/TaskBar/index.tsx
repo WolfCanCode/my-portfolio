@@ -10,9 +10,9 @@ export const TaskBar = ({ children, className }: TaskBarP) => {
   return (
     <div
       className={clsx(
-        "flex flex-row fixed",
-        "w-11/12 h-16",
-        "left-[length:calc(100vw_/_12_/_2)] bottom-5",
+        "flex flex-row fixed z-50",
+        "w-11/12 h-20",
+        "left-[length:calc(100vw_/_12_/_2)] bottom-2",
         "rounded-xl",
         "px-2",
         "justify-center",

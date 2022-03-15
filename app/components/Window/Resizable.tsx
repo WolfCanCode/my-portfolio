@@ -20,12 +20,17 @@ export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
             height: Math.round(size.height),
             left:
               handle === "sw" || handle === "w" || handle === "nw"
-                ? app.style.left + app.style.width - size.width
+                ? app.style.left + app.style.width - size.width > 0
+                  ? app.style.left + app.style.width - size.width
+                  : 0
                 : app.style.left,
             top:
               handle === "nw" || handle === "n" || handle === "ne"
-                ? app.style.top + app.style.height - size.height
+                ? app.style.top + app.style.height - size.height > 0
+                  ? app.style.top + app.style.height - size.height
+                  : 0
                 : app.style.top,
+            isMax: false,
           },
         }));
       }}
