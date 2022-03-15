@@ -79,7 +79,7 @@ export const WindowHeader = ({
           <button
             aria-label={"close"}
             className={
-              "rounded-full w-3 h-3 bg-red-500 hover:bg-red-400 m-auto"
+              "rounded-full w-3 h-3 bg-red-500 hover:bg-red-400 m-auto shadow-md"
             }
             onClick={() => {
               closeWindow();
@@ -89,7 +89,7 @@ export const WindowHeader = ({
           <button
             aria-label={"minimize"}
             className={
-              "rounded-full w-3 h-3 bg-orange-500 hover:bg-orange-400 m-auto"
+              "rounded-full w-3 h-3 bg-orange-500 hover:bg-orange-400 m-auto  shadow-md"
             }
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
             onClick={() => {
@@ -99,7 +99,7 @@ export const WindowHeader = ({
           <button
             aria-label={"expand"}
             className={
-              "rounded-full w-3 h-3 bg-green-500 hover:bg-green-400 m-auto"
+              "rounded-full w-3 h-3 bg-green-500 hover:bg-green-400 m-auto  shadow-md"
             }
             onClick={() => {
               expandWindow();

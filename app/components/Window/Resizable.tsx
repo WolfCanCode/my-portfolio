@@ -1,11 +1,96 @@
 import React from "react";
-import { Resizable as ReactResizable } from "react-resizable";
+import { Resizable as ReactResizable, ResizeHandle } from "react-resizable";
 import styled, { css } from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { runningAppState, isSelectedState } from "~/atoms";
 
 export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
   const [runningApp, setRunningApp] = useRecoilState(runningAppState(id));
+
+  const onResizeHandle = (h: ResizeHandle) => {
+    switch (h) {
+      case "n": {
+        expandToTop();
+        break;
+      }
+      case "w": {
+        expandToLeft();
+        break;
+      }
+      case "s": {
+        expandToBottom();
+        break;
+      }
+      case "e": {
+        expandToRight();
+        break;
+      }
+      case "nw": {
+        expandToTop();
+        expandToLeft();
+        break;
+      }
+      case "sw": {
+        expandToBottom();
+        expandToLeft();
+        break;
+      }
+      case "ne": {
+        expandToTop();
+        expandToRight();
+        break;
+      }
+      case "se": {
+        expandToBottom();
+        expandToRight();
+        break;
+      }
+    }
+  };
+
+  const expandToTop = () => {
+    setRunningApp((app) => ({
+      ...app,
+      style: {
+        ...app.style,
+        top: 0,
+        height: app.style.height + app.style.top,
+      },
+    }));
+  };
+
+  const expandToLeft = () => {
+    setRunningApp((app) => ({
+      ...app,
+      style: {
+        ...app.style,
+        left: 0,
+        width: app.style.width + app.style.left,
+      },
+    }));
+  };
+
+  const expandToRight = () => {
+    setRunningApp((app) => ({
+      ...app,
+      style: {
+        ...app.style,
+        width: screen.availWidth - app.style.left,
+      },
+    }));
+  };
+
+  const expandToBottom = () => {
+    setRunningApp((app) => ({
+      ...app,
+      style: {
+        ...app.style,
+        height:
+          app.style.height +
+          (screen.availHeight - app.style.height - app.style.top - 178),
+      },
+    }));
+  };
 
   return (
     <ReactResizable
@@ -35,7 +120,13 @@ export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
         }));
       }}
       resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}
-      handle={(h) => <Handle className={`handle-${h}`} isVisible={true} />}
+      handle={(h) => (
+        <Handle
+          className={`handle-${h}`}
+          isVisible={true}
+          onDoubleClick={() => onResizeHandle(h)}
+        />
+      )}
     >
       {children}
     </ReactResizable>
