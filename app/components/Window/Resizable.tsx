@@ -11,13 +11,21 @@ export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
     <ReactResizable
       width={runningApp.style.width}
       height={runningApp.style.height}
-      onResize={(_, { size }) => {
+      onResize={(_, { size, handle }) => {
         setRunningApp((app) => ({
           ...app,
           style: {
             ...app.style,
             width: Math.round(size.width),
             height: Math.round(size.height),
+            left:
+              handle === "sw" || handle === "w" || handle === "nw"
+                ? app.style.left + app.style.width - size.width
+                : app.style.left,
+            top:
+              handle === "nw" || handle === "n" || handle === "ne"
+                ? app.style.top + app.style.height - size.height
+                : app.style.top,
           },
         }));
       }}

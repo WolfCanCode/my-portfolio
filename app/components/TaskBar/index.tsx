@@ -12,7 +12,7 @@ export const TaskBar = ({ children, className }: TaskBarP) => {
       className={clsx(
         "flex flex-row fixed",
         "w-11/12 h-16",
-        "left-20 bottom-5",
+        "left-[length:calc(100vw_/_12_/_2)] bottom-5",
         "rounded-xl",
         "px-2",
         "justify-center",

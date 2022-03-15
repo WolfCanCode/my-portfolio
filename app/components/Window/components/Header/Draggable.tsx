@@ -10,7 +10,7 @@ type DraggableProps = {
 export const Draggable: React.FC<DraggableProps> = ({ id, children }) => {
   const selectedAppId = useRecoilValue(selectedAppIdState);
 
-  const setElements = useRecoilCallback(
+  const setAppStyle = useRecoilCallback(
     ({ set }) => {
       return (movementX: number, movementY: number) => {
         // Move all the selected elements
@@ -30,7 +30,7 @@ export const Draggable: React.FC<DraggableProps> = ({ id, children }) => {
   return (
     <DraggableCore
       onDrag={(e: any) => {
-        setElements(e.movementX, e.movementY);
+        setAppStyle(e.movementX, e.movementY);
       }}
     >
       {children}

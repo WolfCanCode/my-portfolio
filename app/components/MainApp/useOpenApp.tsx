@@ -1,5 +1,15 @@
-import { useRecoilCallback, useRecoilState } from "recoil";
-import { runningAppsState, runningAppState, defaultWindowStyle } from "~/atoms";
+import {
+  useRecoilCallback,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+import {
+  runningAppsState,
+  runningAppState,
+  defaultWindowStyle,
+  selectedAppIdState,
+} from "~/atoms";
 
 /**
  * A hook that returns a function that can be called
@@ -7,12 +17,22 @@ import { runningAppsState, runningAppState, defaultWindowStyle } from "~/atoms";
  */
 export const useOpenApp = () => {
   const [runningApps, setRunningApps] = useRecoilState(runningAppsState);
+  const setSelected = useSetRecoilState(selectedAppIdState);
 
   return useRecoilCallback(
-    ({ set }) => {
+    ({ set, snapshot }) => {
       return (title: string, appId: number) => {
-        setRunningApps((runningApps) => [...runningApps, appId]);
+        const currentApp = snapshot.getLoadable(runningAppState(appId));
+        setSelected(appId);
 
+        if (currentApp.contents.title) {
+          set(runningAppState(appId), {
+            ...currentApp.contents,
+            style: { ...currentApp.contents.style, isMin: false },
+          });
+          return;
+        }
+        setRunningApps((runningApps) => [...runningApps, appId]);
         set(runningAppState(appId), {
           style: defaultWindowStyle,
           title,

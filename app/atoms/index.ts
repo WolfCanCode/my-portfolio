@@ -7,6 +7,8 @@ export type RunningAppState = {
     left: number;
     width: number;
     height: number;
+    isMin?: boolean;
+    isMax?: boolean;
   };
 };
 
@@ -15,6 +17,8 @@ export const defaultWindowStyle = {
   left: 20,
   width: 500,
   height: 400,
+  isMin: false,
+  isMax: false,
 };
 
 /**
@@ -82,5 +86,15 @@ export const isSelectedState = selectorFamily({
     ({ get }) => {
       const selectedRunningAppIds = get(selectedAppIdState);
       return selectedRunningAppIds === id;
+    },
+});
+
+export const isRunningAppState = selectorFamily({
+  key: "isRunningApp",
+  get:
+    (id: number) =>
+    ({ get }) => {
+      const runningApps = get(runningAppsState);
+      return runningApps.includes(id);
     },
 });
