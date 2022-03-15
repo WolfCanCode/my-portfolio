@@ -17,6 +17,7 @@ export const AppIcon = ({
 
   return (
     <div
+      id={`app-icon-${id}`}
       onClick={onClick}
       className={clsx(
         "relative h-12 w-12",

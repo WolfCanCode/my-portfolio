@@ -13,6 +13,7 @@ import {
   runningAppState,
   selectedAppIdState,
 } from "~/atoms";
+import { animate } from "motion";
 
 export const WindowHeader = ({
   children,
@@ -31,14 +32,36 @@ export const WindowHeader = ({
   const [isHover, setIsHover] = React.useState(false);
 
   const expandWindow = () => {
+    const windowApp = document.querySelector(
+      `#window-app-${id}`
+    ) as HTMLElement;
+    if (!currentAppState.style.isMax) {
+      animate(
+        windowApp,
+        {
+          x: [currentAppState.style.left, 0],
+          y: [currentAppState.style.top, 0],
+          width: [currentAppState.style.width, "100vw"],
+          height: [currentAppState.style.height, "100vh"],
+        },
+        { duration: 0.4, easing: "ease-in-out", repeat: 0 }
+      );
+    } else {
+      animate(
+        windowApp,
+        {
+          x: [0, currentAppState.style.left],
+          y: [0, currentAppState.style.top],
+          width: ["100vw", `${currentAppState.style.width}px`],
+          height: ["100vh", `${currentAppState.rootStyle.height}px`],
+        },
+        { duration: 0.4, easing: "ease-in-out", repeat: 0 }
+      );
+    }
     setCurrentAppState({
       ...currentAppState,
       style: {
         ...currentAppState.style,
-        top: 0,
-        left: 0,
-        width: currentAppState.style.isMax ? 500 : screen.width,
-        height: currentAppState.style.isMax ? 400 : screen.height,
         isMax: !currentAppState.style.isMax,
       },
     });
