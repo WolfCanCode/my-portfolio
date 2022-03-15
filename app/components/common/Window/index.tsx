@@ -103,11 +103,12 @@ export const Window = ({ id }: { id: number }) => {
           {style.isMin ? (
             <img
               src={listApp.find((app) => app.id === id)?.icon}
-              className={"cover"}
+              className={"cover absolute top-0 left-0"}
             />
-          ) : (
-            comp
-          )}
+          ) : null}
+          <div className={`${style.isMin ? "opacity-0" : "opacity-100"}`}>
+            {comp}
+          </div>
         </WindowBody>
       </div>
     </Resizable>
