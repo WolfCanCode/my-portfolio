@@ -1,16 +1,10 @@
+import React from "react";
+import { useRecoilCallback, useRecoilState, useSetRecoilState } from "recoil";
 import {
-  useRecoilCallback,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-import {
+  defaultWindowStyle,
   runningAppsState,
   runningAppState,
-  defaultWindowStyle,
   selectedAppIdState,
-  isSelectedState,
-  isRunningAppState,
 } from "~/atoms";
 
 /**
@@ -22,7 +16,12 @@ export const useOpenApp = () => {
   const setSelected = useSetRecoilState(selectedAppIdState);
   return useRecoilCallback(
     ({ set, snapshot }) => {
-      return (title: string, appId: number) => {
+      return (
+        title: string,
+        appId: number,
+        comp?: React.ReactNode,
+        style?: { width?: number; height?: number; top?: number; left?: number }
+      ) => {
         const currentApp = snapshot.getLoadable(runningAppState(appId));
         setSelected(appId);
 
@@ -39,8 +38,10 @@ export const useOpenApp = () => {
         }
         setRunningApps((runningApps) => [...runningApps, appId]);
         set(runningAppState(appId), {
-          style: defaultWindowStyle,
+          style: { ...defaultWindowStyle, ...style },
+          rootStyle: { ...defaultWindowStyle, ...style },
           title,
+          comp,
         });
       };
     },

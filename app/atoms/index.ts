@@ -1,4 +1,5 @@
 import { atomFamily, atom, selectorFamily, selector } from "recoil";
+import { ReactNode } from "react";
 
 export type RunningAppState = {
   title: string;
@@ -10,6 +11,15 @@ export type RunningAppState = {
     isMin?: boolean;
     isMax?: boolean;
   };
+  rootStyle: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+    isMin?: boolean;
+    isMax?: boolean;
+  };
+  comp?: ReactNode;
 };
 
 export const defaultWindowStyle = {
@@ -40,6 +50,7 @@ export const runningAppState = atomFamily<RunningAppState, number>({
   key: "runningApp",
   default: () => ({
     style: defaultWindowStyle,
+    rootStyle: defaultWindowStyle,
     title: "",
   }),
 });

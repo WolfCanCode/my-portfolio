@@ -1,6 +1,6 @@
 import React from "react";
 import { DraggableCore } from "react-draggable";
-import { Draggable } from "~/components/Window/components/Header/Draggable";
+import { Draggable } from "~/components/common/Window/components/Header/Draggable";
 import {
   useRecoilState,
   useRecoilValue,
@@ -107,10 +107,8 @@ export const WindowHeader = ({
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
           />
         </div>
-        <div className={"ml-1 select-none"}>
-          <h1>
-            {children} - {id}
-          </h1>
+        <div className={"ml-3 select-none"}>
+          <h1 className={"font-medium"}>{children}</h1>
         </div>
       </div>
     </Draggable>

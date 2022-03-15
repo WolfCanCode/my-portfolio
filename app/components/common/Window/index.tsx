@@ -1,16 +1,17 @@
 import React from "react";
 import clsx from "clsx";
-import { WindowHeader } from "~/components/Window/components/Header";
+import { WindowHeader } from "~/components/common/Window/components/Header";
 import { isSelectedState, runningAppState, selectedAppIdState } from "~/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { Resizable } from "~/components/Window/Resizable";
+import { Resizable } from "~/components/common/Window/Resizable";
+import { WindowBody } from "~/components/common/Window/components/Body";
 
 export const Window = ({ id }: { id: number }) => {
   const currentApp = useRecoilValue(runningAppState(id));
   const isSelected = useRecoilValue(isSelectedState(id));
   const setSelected = useSetRecoilState(selectedAppIdState);
 
-  const { style, title } = currentApp;
+  const { style, title, comp } = currentApp;
   return currentApp ? (
     <Resizable id={id}>
       <div
@@ -29,6 +30,7 @@ export const Window = ({ id }: { id: number }) => {
         }}
       >
         <WindowHeader id={id}>{title}</WindowHeader>
+        <WindowBody>{comp}</WindowBody>
       </div>
     </Resizable>
   ) : null;

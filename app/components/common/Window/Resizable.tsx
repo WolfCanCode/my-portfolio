@@ -101,8 +101,14 @@ export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
           ...app,
           style: {
             ...app.style,
-            width: Math.round(size.width),
-            height: Math.round(size.height),
+            width:
+              Math.round(size.width) < runningApp.rootStyle.width
+                ? runningApp.rootStyle.width
+                : Math.round(size.width),
+            height:
+              Math.round(size.height) < runningApp.rootStyle.height
+                ? runningApp.rootStyle.height
+                : Math.round(size.height),
             left:
               handle === "sw" || handle === "w" || handle === "nw"
                 ? app.style.left + app.style.width - size.width > 0
