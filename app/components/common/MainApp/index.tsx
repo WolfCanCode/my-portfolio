@@ -5,7 +5,6 @@ import { runningAppsState, selectedAppIdState } from "~/atoms";
 import { Window } from "~/components/common/Window";
 import { useOpenApp } from "~/components/common/MainApp/useOpenApp";
 import { useRecoilValue } from "recoil";
-import { Calculator } from "~/components/apps/Calculator";
 import { listApp } from "~/components/common/MainApp/configs";
 
 export const MainApp = () => {

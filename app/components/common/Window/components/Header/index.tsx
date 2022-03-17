@@ -68,6 +68,12 @@ export const WindowHeader = ({
   };
 
   const minWindow = () => {
+    if (currentAppState.style.isMax) {
+      if (currentAppState.style.isMin) {
+      } else {
+        expandWindow();
+      }
+    }
     setCurrentAppState({
       ...currentAppState,
       style: {

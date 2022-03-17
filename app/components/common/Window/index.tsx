@@ -25,21 +25,24 @@ export const Window = ({ id }: { id: number }) => {
       animate(
         windowApp,
         {
-          x: [style.left, buttonAppIcon.offsetLeft],
+          x: [
+            style.left,
+            buttonAppIcon.offsetLeft - buttonAppIcon.offsetWidth - 35,
+          ],
         },
         { duration: 0.35, easing: "ease-in-out", repeat: 0 }
       );
       animate(
         windowApp,
         {
-          y: [style.top, screen.availHeight - buttonAppIcon.offsetTop],
+          y: [style.top, screen.availHeight - buttonAppIcon.offsetTop - 350],
         },
         { duration: 0.5, easing: "ease-in-out", repeat: 0 }
       );
       animate(
         windowApp,
         {
-          scale: [1, 0.2],
+          scale: [1, windowApp.offsetWidth > 300 ? 0.12 : 0.2],
         },
         { duration: 0.2, easing: "ease-in-out", repeat: 0 }
       );
@@ -68,7 +71,7 @@ export const Window = ({ id }: { id: number }) => {
       animate(
         windowApp,
         {
-          scale: [0.3, 1],
+          scale: [0.2, 1],
         },
         { duration: 0.6, easing: "ease-in-out", repeat: 0 }
       );
