@@ -10,7 +10,7 @@ import styles from "./styles/app.css";
 import type { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Wolfcancode Profile" };
 };
 
 export function links() {
