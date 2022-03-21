@@ -504,6 +504,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 0px;
 }
 
+.left-\[\] {
+  left: ;
+}
+
+.left-\[1\] {
+  left: 1;
+}
+
+.left-\[5\] {
+  left: 5;
+}
+
+.left-\[50\] {
+  left: 50;
+}
+
+.left-\[length\] {
+  left: length;
+}
+
 .z-50 {
   z-index: 50;
 }

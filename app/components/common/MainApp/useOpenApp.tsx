@@ -38,7 +38,7 @@ export const useOpenApp = () => {
         }
         setRunningApps((runningApps) => [...runningApps, appId]);
         set(runningAppState(appId), {
-          style: { ...defaultWindowStyle, ...style },
+          style: { ...defaultWindowStyle, ...style},
           rootStyle: { ...defaultWindowStyle, ...style },
           title,
           comp,

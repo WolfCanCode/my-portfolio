@@ -1,7 +1,7 @@
 import React from "react";
 import { TaskBar } from "~/components/common/TaskBar";
 import { AppIcon } from "~/components/common/AppIcon";
-import { runningAppsState, selectedAppIdState } from "~/atoms";
+import { runningAppsState } from "~/atoms";
 import { Window } from "~/components/common/Window";
 import { useOpenApp } from "~/components/common/MainApp/useOpenApp";
 import { useRecoilValue } from "recoil";

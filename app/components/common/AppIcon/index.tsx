@@ -32,12 +32,14 @@ export const AppIcon = ({
       )}
     >
       <img src={icon} className={"object-contain h-12 w-12 m-auto p-1"} />
-      <label
-        className={clsx(
-          "bg-white/75 h-1.5 w-1.5 rounded-full bottom-[length:-14px] absolute m-auto left-1/2 transform-translate-x-1/2 transition-all duration-200 ease-in",
-          isRunningApp ? "opacity-100" : "opacity-0"
-        )}
-      />
+      <div className="w-full flex justify-center">
+        <label
+          className={clsx(
+            "bg-white/75 h-1.5 w-1.5 rounded-full bottom-[length:-14px] absolute m-auto left-[length: calc(50%_-_0.225rem)] transform-translate-x-1/2 transition-all duration-200 ease-in",
+            isRunningApp ? "opacity-100" : "opacity-0"
+          )}
+        />
+      </div>
     </div>
   );
 };

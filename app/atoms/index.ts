@@ -10,6 +10,7 @@ export type RunningAppState = {
     height: number;
     isMin?: boolean;
     isMax?: boolean;
+    isInitial?: boolean;
   };
   rootStyle: {
     top: number;
@@ -18,6 +19,7 @@ export type RunningAppState = {
     height: number;
     isMin?: boolean;
     isMax?: boolean;
+    isInitial?: boolean;
   };
   comp?: ReactNode;
 };
@@ -27,8 +29,9 @@ export const defaultWindowStyle = {
   left: 20,
   width: 500,
   height: 400,
-  isMin: undefined,
+  isMin: false,
   isMax: false,
+  isInitial: true,
 };
 
 export const runningAppsState = atom<number[]>({
