@@ -13,7 +13,7 @@ export const Window = ({ id }: { id: number }) => {
   const isSelected = useRecoilValue(isSelectedState(id));
   const setSelected = useSetRecoilState(selectedAppIdState);
 
-  const { style, title, comp, rootStyle } = currentApp;
+  const { style, title, comp } = currentApp;
   useEffect(() => {
     const buttonAppIcon = document.querySelector(
       `#app-icon-${id}`
@@ -25,70 +25,78 @@ export const Window = ({ id }: { id: number }) => {
       animate(
         windowApp,
         {
-          x: [
-            style.left,
-            buttonAppIcon.offsetLeft - buttonAppIcon.offsetWidth - 35,
-          ],
+          x: [style.left, buttonAppIcon.getBoundingClientRect().x],
+          zIndex: 99,
         },
-        { duration: 0.35, easing: "ease-in-out", repeat: 0 }
+        { duration: 0.45, easing: "ease-in-out", repeat: 0 }
       );
       animate(
         windowApp,
         {
-          y: [style.top, screen.availHeight - buttonAppIcon.offsetTop - 350],
+          y: [style.top, screen.availHeight - buttonAppIcon.offsetTop - 150],
         },
-        { duration: 0.5, easing: "ease-in-out", repeat: 0 }
-      );
+        { duration: 0.8, easing: "ease-in-out", repeat: 0 }
+      ).finished.then(() => {
+        animate(
+          windowApp,
+          {
+            opacity: [1, 0],
+          },
+          { duration: 0.1, easing: "ease-in", repeat: 0 }
+        );
+      });
       animate(
         windowApp,
         {
-          scale: [1, windowApp.offsetWidth > 300 ? 0.12 : 0.2],
+          width: [style.width + "px", buttonAppIcon.offsetWidth + "px"],
+          height: [style.height + "px", buttonAppIcon.offsetHeight + "px"],
         },
         { duration: 0.2, easing: "ease-in-out", repeat: 0 }
       );
-      animate(
-        windowApp,
-        {
-          opacity: [1, 0],
-        },
-        { duration: 0.6, easing: "ease-in-out", repeat: 0 }
-      );
     } else {
-      animate(
-        windowApp,
-        {
-          x: [buttonAppIcon.offsetLeft, style.left],
-        },
-        { duration: 0.4, easing: "ease-in-out", repeat: 0 }
-      );
-      animate(
-        windowApp,
-        {
-          y: [screen.availHeight - buttonAppIcon.offsetTop, style.top],
-        },
-        { duration: 0.4, easing: "ease-in-out", repeat: 0 }
-      );
-      animate(
-        windowApp,
-        {
-          scale: [0.2, 1],
-        },
-        { duration: 0.6, easing: "ease-in-out", repeat: 0 }
-      );
-      animate(
-        windowApp,
-        {
-          opacity: [0, 1],
-        },
-        { duration: 0.1, easing: "ease-in-out", repeat: 0 }
-      );
+      if (style.isMin !== undefined) {
+        animate(
+          windowApp,
+          {
+            x: [buttonAppIcon.offsetLeft + 200, style.left],
+            zIndex: 0,
+          },
+          { duration: 0.5, easing: "ease-in-out", repeat: 0 }
+        );
+        animate(
+          windowApp,
+          {
+            y: [screen.availHeight - buttonAppIcon.offsetTop, style.top],
+          },
+          { duration: 0.35, easing: "ease-in-out", repeat: 0 }
+        );
+        setTimeout(() => {
+          animate(
+            windowApp,
+            {
+              width: [buttonAppIcon.offsetWidth + "px", style.width + "px"],
+              height: [buttonAppIcon.offsetHeight + "px", style.height + "px"],
+            },
+            { duration: 0.5, easing: "ease-in-out", repeat: 0 }
+          );
+        }, 200);
+        animate(
+          windowApp,
+          {
+            opacity: [0, 1],
+          },
+          { duration: 0.1, easing: "ease-in-out", repeat: 0 }
+        );
+      }
     }
   }, [style.isMin]);
   return currentApp ? (
     <Resizable id={id}>
       <div
         id={`window-app-${id}`}
-        className={`fixed z-10 left-0 top-0 bg-white/50 backdrop-blur-md shadow-lg rounded-lg p-1 border-[length:1px] border-gray-200 `}
+        className={`fixed z-10 left-0 top-0  backdrop-blur-md rounded-lg p-1 ${
+          style.isMin ? "" : "bg-white/50 border-[length:1px] shadow-lg "
+        } border-gray-200 `}
         style={{
           width: `${style.width}px`,
           height: `${style.height}px`,
@@ -101,15 +109,16 @@ export const Window = ({ id }: { id: number }) => {
           setSelected(id);
         }}
       >
-        <WindowHeader id={id}>{title}</WindowHeader>
+        {!style.isMin ? <WindowHeader id={id}>{title}</WindowHeader> : null}
         <WindowBody>
           {style.isMin ? (
             <img
+              alt="app-icon"
               src={listApp.find((app) => app.id === id)?.icon}
-              className={"cover absolute top-0 left-0"}
+              className={"cover absolute top-0 left-0 h-auto w-auto"}
             />
           ) : null}
-          <div className={`${style.isMin ? "opacity-0" : "opacity-100"}`}>
+          <div className={`${style.isMin ? "hidden" : "block"} h-full w-full`}>
             {comp}
           </div>
         </WindowBody>

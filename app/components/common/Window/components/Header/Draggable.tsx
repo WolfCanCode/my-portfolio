@@ -13,7 +13,6 @@ export const Draggable: React.FC<DraggableProps> = ({ id, children }) => {
   const setAppStyle = useRecoilCallback(
     ({ set }) => {
       return (movementX: number, movementY: number) => {
-        // Move all the selected elements
         set(runningAppState(id), (runningApp) => ({
           ...runningApp,
           style: {
@@ -31,6 +30,7 @@ export const Draggable: React.FC<DraggableProps> = ({ id, children }) => {
     <DraggableCore
       onDrag={(e: any) => {
         setAppStyle(e.movementX, e.movementY);
+        e.stopPropagation();
       }}
     >
       {children}

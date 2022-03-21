@@ -1,5 +1,4 @@
 import React from "react";
-import { DraggableCore } from "react-draggable";
 import { Draggable } from "~/components/common/Window/components/Header/Draggable";
 import {
   useRecoilState,
@@ -69,8 +68,7 @@ export const WindowHeader = ({
 
   const minWindow = () => {
     if (currentAppState.style.isMax) {
-      if (currentAppState.style.isMin) {
-      } else {
+      if (!currentAppState.style.isMin) {
         expandWindow();
       }
     }
@@ -93,7 +91,7 @@ export const WindowHeader = ({
   return (
     <Draggable id={id}>
       <div
-        className={"relative h-6 flex flex-row"}
+        className={"relative h-6 flex flex-row overflow-hidden"}
         onDoubleClick={() => {
           expandWindow();
         }}

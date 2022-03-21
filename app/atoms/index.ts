@@ -27,7 +27,7 @@ export const defaultWindowStyle = {
   left: 20,
   width: 500,
   height: 400,
-  isMin: false,
+  isMin: undefined,
   isMax: false,
 };
 
