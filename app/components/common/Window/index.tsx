@@ -6,7 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Resizable } from "~/components/common/Window/Resizable";
 import { WindowBody } from "~/components/common/Window/components/Body";
 import { animate } from "motion";
-import { listApp } from "~/components/common/MainApp/configs";
+import { listApp } from "~/configs/configs";
 
 export const Window = ({ id }: { id: number }) => {
   const currentApp = useRecoilValue(runningAppState(id));

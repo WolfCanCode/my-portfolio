@@ -41,7 +41,7 @@ export const WindowHeader = ({
           x: [currentAppState.style.left, 0],
           y: [currentAppState.style.top, 0],
           width: [currentAppState.style.width, "100vw"],
-          height: [currentAppState.style.height, "100vh"],
+          height: [currentAppState.style.height, "90vh"],
         },
         { duration: 0.4, easing: "ease-in-out", repeat: 0 }
       );
@@ -52,7 +52,7 @@ export const WindowHeader = ({
           x: [0, currentAppState.style.left],
           y: [0, currentAppState.style.top],
           width: ["100vw", `${currentAppState.style.width}px`],
-          height: ["100vh", `${currentAppState.rootStyle.height}px`],
+          height: ["90vh", `${currentAppState.rootStyle.height}px`],
         },
         { duration: 0.4, easing: "ease-in-out", repeat: 0 }
       );

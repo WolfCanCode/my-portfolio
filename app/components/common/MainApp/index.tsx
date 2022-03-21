@@ -5,7 +5,7 @@ import { runningAppsState, selectedAppIdState } from "~/atoms";
 import { Window } from "~/components/common/Window";
 import { useOpenApp } from "~/components/common/MainApp/useOpenApp";
 import { useRecoilValue } from "recoil";
-import { listApp } from "~/components/common/MainApp/configs";
+import { listApp } from "~/configs/configs";
 
 export const MainApp = () => {
   const runningApps = useRecoilValue<number[]>(runningAppsState);
