@@ -1,4 +1,4 @@
-import { MyCV, Calculator } from "~/components/apps";
+import { Calculator, MyCV } from "~/components/apps";
 
 export const listApp = [
   {
@@ -9,6 +9,7 @@ export const listApp = [
     style: {
       width: 600,
       height: 800,
+      top:60
     },
   },
   {
@@ -19,6 +20,7 @@ export const listApp = [
     style: {
       width: 365,
       height: 485,
+      top:60
     },
   },
 ];

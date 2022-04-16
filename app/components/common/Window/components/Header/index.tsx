@@ -1,17 +1,18 @@
-import React from "react";
-import { Draggable } from "~/components/common/Window/components/Header/Draggable";
+import {
+  isSelectedState,
+  runningAppState,
+  runningAppsState,
+  selectedAppIdState,
+} from "~/atoms";
 import {
   useRecoilState,
   useRecoilValue,
   useResetRecoilState,
   useSetRecoilState,
 } from "recoil";
-import {
-  isSelectedState,
-  runningAppsState,
-  runningAppState,
-  selectedAppIdState,
-} from "~/atoms";
+
+import { Draggable } from "~/components/common/Window/components/Header/Draggable";
+import React from "react";
 import { animate } from "motion";
 
 export const WindowHeader = ({
@@ -39,7 +40,7 @@ export const WindowHeader = ({
         windowApp,
         {
           x: [currentAppState.style.left, 0],
-          y: [currentAppState.style.top, 0],
+          y: [currentAppState.style.top, 42],
           width: [currentAppState.style.width, "100vw"],
           height: [currentAppState.style.height, "90vh"],
         },
@@ -50,7 +51,7 @@ export const WindowHeader = ({
         windowApp,
         {
           x: [0, currentAppState.style.left],
-          y: [0, currentAppState.style.top],
+          y: [42, currentAppState.style.top],
           width: ["100vw", `${currentAppState.style.width}px`],
           height: ["90vh", `${currentAppState.rootStyle.height}px`],
         },
@@ -91,7 +92,9 @@ export const WindowHeader = ({
   return (
     <Draggable id={id}>
       <div
-        className={"relative h-6 flex flex-row overflow-hidden"}
+        className={
+          "relative h-6 flex flex-row overflow-hidden cursor-default active:cursor-move"
+        }
         onDoubleClick={() => {
           expandWindow();
         }}
@@ -134,8 +137,10 @@ export const WindowHeader = ({
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
           />
         </div>
-        <div className={"ml-3 select-none"}>
-          <h1 className={"font-medium"}>{children}</h1>
+        <div className={"ml-3 select-none cursor-default active:cursor-move"}>
+          <h1 className={"font-medium cursor-default active:cursor-move"}>
+            {children}
+          </h1>
         </div>
       </div>
     </Draggable>

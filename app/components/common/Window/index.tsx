@@ -109,7 +109,7 @@ export const Window = ({ id }: { id: number }) => {
         className={`fixed z-10 left-0 top-0  backdrop-blur-md rounded-lg p-1 ${
           style.isMin
             ? ""
-            : "bg-white/20  border-white/5 border-[length:1px] shadow-lg "
+            : "bg-white/20  border-white border-opacity-5 border-[length:1px] shadow-lg "
         } border-gray-200 `}
         style={{
           width: `${style.width}px`,

@@ -4,6 +4,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: { wallpaper: 'url("/assets/wallpaper.jpeg")' },
+      zIndex: {
+        100: "100",
+      },
     },
   },
   plugins: [],
