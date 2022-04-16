@@ -16,7 +16,7 @@ export const TaskBar = ({ children, className }: TaskBarP) => {
         "rounded-xl",
         "px-2",
         "justify-center",
-        "backdrop-blur-md bg-white/30 shadow-md",
+        "backdrop-blur-md bg-white/20 shadow-md",
         className
       )}
     >

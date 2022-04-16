@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import clsx from "clsx";
-import { WindowHeader } from "~/components/common/Window/components/Header";
 import { isSelectedState, runningAppState, selectedAppIdState } from "~/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+
 import { Resizable } from "~/components/common/Window/Resizable";
 import { WindowBody } from "~/components/common/Window/components/Body";
+import { WindowHeader } from "~/components/common/Window/components/Header";
 import { animate } from "motion";
+import clsx from "clsx";
 import { listApp } from "~/configs/configs";
 
 export const Window = ({ id }: { id: number }) => {
@@ -106,7 +107,9 @@ export const Window = ({ id }: { id: number }) => {
       <div
         id={`window-app-${id}`}
         className={`fixed z-10 left-0 top-0  backdrop-blur-md rounded-lg p-1 ${
-          style.isMin ? "" : "bg-white/50 border-[length:1px] shadow-lg "
+          style.isMin
+            ? ""
+            : "bg-white/20  border-white/5 border-[length:1px] shadow-lg "
         } border-gray-200 `}
         style={{
           width: `${style.width}px`,

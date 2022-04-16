@@ -1,22 +1,20 @@
+import { AppIcon } from "~/components/common/AppIcon";
 import React from "react";
 import { TaskBar } from "~/components/common/TaskBar";
-import { AppIcon } from "~/components/common/AppIcon";
-import { runningAppsState } from "~/atoms";
+import { TopBar } from "../TopBar";
 import { Window } from "~/components/common/Window";
+import { listApp } from "~/configs/configs";
+import { runningAppsState } from "~/atoms";
 import { useOpenApp } from "~/components/common/MainApp/useOpenApp";
 import { useRecoilValue } from "recoil";
-import { listApp } from "~/configs/configs";
 
 export const MainApp = () => {
   const runningApps = useRecoilValue<number[]>(runningAppsState);
   const openApp = useOpenApp();
   return (
     <>
-      <div
-        className={
-          "hidden lg:block h-screen w-screen bg-gradient-to-r from-cyan-500 to-blue-500"
-        }
-      >
+      <div className={"hidden lg:block h-screen w-screen bg-wallpaper"}>
+        <TopBar />
         {(runningApps &&
           runningApps.length &&
           runningApps.map((id: number) => <Window key={id} id={id} />)) ||
