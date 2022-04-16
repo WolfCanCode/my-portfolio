@@ -61,19 +61,35 @@ export const Window = ({ id }: { id: number }) => {
           animate(
             windowApp,
             {
-              x: [buttonAppIcon.offsetLeft + 200, style.left],
-              zIndex: 50,
+              opacity: [0, 1],
             },
-            { duration: 0.5, easing: "ease-in-out", repeat: 0 }
+            { duration: 0.2, easing: "ease-in-out", repeat: 0 }
           );
           animate(
             windowApp,
             {
-              y: [screen.availHeight - buttonAppIcon.offsetTop, style.top],
+              y: [
+                screen.availHeight - buttonAppIcon.offsetTop,
+                screen.height - 200,
+              ],
             },
-            { duration: 0.35, easing: "ease-in-out", repeat: 0 }
-          );
-          setTimeout(() => {
+            { duration: 0.15, easing: "ease-in-out", repeat: 0 }
+          ).finished.then(() => {
+            animate(
+              windowApp,
+              {
+                x: [buttonAppIcon.offsetLeft, style.left],
+                zIndex: 50,
+              },
+              { duration: 0.5, easing: "ease-in-out", repeat: 0 }
+            );
+            animate(
+              windowApp,
+              {
+                y: [screen.availHeight - 200, style.top],
+              },
+              { duration: 0.35, easing: "ease-in-out", repeat: 0 }
+            );
             animate(
               windowApp,
               {
@@ -85,14 +101,7 @@ export const Window = ({ id }: { id: number }) => {
               },
               { duration: 0.5, easing: "ease-in-out", repeat: 0 }
             );
-          }, 200);
-          animate(
-            windowApp,
-            {
-              opacity: [0, 1],
-            },
-            { duration: 0.1, easing: "ease-in-out", repeat: 0 }
-          );
+          });
         }
       }
     } else {
