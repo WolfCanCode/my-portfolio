@@ -1,8 +1,10 @@
-import React from "react";
-import { Resizable as ReactResizable, ResizeHandle } from "react-resizable";
 import styled, { css } from "styled-components";
-import { useRecoilState } from "recoil";
+
+import React from "react";
+import { Resizable as ReactResizable } from "react-resizable";
+import type { ResizeHandle } from "react-resizable";
 import { runningAppState } from "~/atoms";
+import { useRecoilState } from "recoil";
 
 export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
   const [runningApp, setRunningApp] = useRecoilState(runningAppState(id));
@@ -136,6 +138,7 @@ export const Resizable: React.FC<{ id: number }> = ({ children, id }) => {
         />
       )}
     >
+      {/* @ts-ignore */}
       {children}
     </ReactResizable>
   );

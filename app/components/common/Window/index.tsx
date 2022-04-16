@@ -119,9 +119,7 @@ export const Window = ({ id }: { id: number }) => {
           zIndex: isSelected ? 50 : 10,
           transform: `translate(${style.left}px, ${style.top}px)`,
         }}
-        onMouseDown={() => {
-          setSelected(id);
-        }}
+        onMouseDown={() => setSelected(id)}
       >
         {!style.isMin ? <WindowHeader id={id}>{title}</WindowHeader> : null}
         <WindowBody>

@@ -1,5 +1,6 @@
-import { atomFamily, atom, selectorFamily, selector } from "recoil";
-import { ReactNode } from "react";
+import { atom, atomFamily, selector, selectorFamily } from "recoil";
+
+import type { ReactNode } from "react";
 
 export type RunningAppState = {
   title: string;
@@ -39,6 +40,11 @@ export const runningAppsState = atom<number[]>({
   default: [],
 });
 
+export const DropdownState = atom<string>({
+  key: "dropdown",
+  default: ""
+})
+
 export const runningAppState = atomFamily<RunningAppState, number>({
   key: "runningApp",
   default: () => ({
@@ -50,7 +56,7 @@ export const runningAppState = atomFamily<RunningAppState, number>({
 
 export const selectedAppIdState = atom<number>({
   key: "selectedRunningAppId",
-  default: -1,
+  default: -1,  
 });
 
 export const selectedRunningAppState = selector<RunningAppState | undefined>({

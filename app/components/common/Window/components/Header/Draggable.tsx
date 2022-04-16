@@ -43,16 +43,14 @@ export const Draggable: React.FC<DraggableProps> = ({
     [selectedAppId]
   );
 
+  const dragHandler = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setAppStyle(e.movementX, e.movementY);
+  };
+
   return (
     //@ts-ignore
-    <DraggableCore
-      onDrag={(e: any) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setAppStyle(e.movementX, e.movementY);
-      }}
-    >
-      {children}
-    </DraggableCore>
+    <DraggableCore onDrag={dragHandler}>{children}</DraggableCore>
   );
 };

@@ -1,5 +1,6 @@
 import { isRunningAppState, isSelectedState } from "~/atoms";
 
+import App from "~/root";
 import React from "react";
 import clsx from "clsx";
 import { useRecoilValue } from "recoil";
@@ -10,7 +11,7 @@ export const AppIcon = ({
   icon,
 }: {
   id: number;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   icon: string;
 }) => {
   const isSelected = useRecoilValue(isSelectedState(id));
@@ -32,7 +33,11 @@ export const AppIcon = ({
         isSelected ? "bg-white/40" : ""
       )}
     >
-      <img src={icon} className={"object-contain h-12 w-12 m-auto p-1"} />
+      <img
+        alt={`app id ${id}`}
+        src={icon}
+        className={"object-contain h-12 w-12 m-auto p-1"}
+      />
       <div className="w-full flex justify-center">
         <label
           className={clsx(

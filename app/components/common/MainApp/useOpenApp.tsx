@@ -1,11 +1,13 @@
-import React from "react";
-import { useRecoilCallback, useRecoilState, useSetRecoilState } from "recoil";
 import {
+  DropdownState,
   defaultWindowStyle,
-  runningAppsState,
   runningAppState,
+  runningAppsState,
   selectedAppIdState,
 } from "~/atoms";
+import { useRecoilCallback, useRecoilState, useSetRecoilState } from "recoil";
+
+import type React from "react";
 
 /**
  * A hook that returns a function that can be called
@@ -38,7 +40,7 @@ export const useOpenApp = () => {
         }
         setRunningApps((runningApps) => [...runningApps, appId]);
         set(runningAppState(appId), {
-          style: { ...defaultWindowStyle, ...style},
+          style: { ...defaultWindowStyle, ...style },
           rootStyle: { ...defaultWindowStyle, ...style },
           title,
           comp,

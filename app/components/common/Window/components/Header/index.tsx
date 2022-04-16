@@ -1,4 +1,5 @@
 import {
+  DropdownState,
   isSelectedState,
   runningAppState,
   runningAppsState,
@@ -30,6 +31,7 @@ export const WindowHeader = ({
   const setSelectedRunningApp = useSetRecoilState(selectedAppIdState);
   const isSelected = useRecoilValue(isSelectedState(id));
   const [isHover, setIsHover] = React.useState(false);
+  const setDropdownStatus = useSetRecoilState<string>(DropdownState);
 
   const expandWindow = () => {
     const windowApp = document.querySelector(
@@ -89,15 +91,26 @@ export const WindowHeader = ({
     setSelectedRunningApp(-1);
   };
 
+  const clickExpand = () => {
+    setIsHover(true);
+    expandWindow();
+    expandWindow();
+  };
+
+  const forceClick = (e: any) => {
+    setDropdownStatus("header");
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <Draggable id={id}>
       <div
+        onClick={forceClick}
         className={
           "relative h-6 flex flex-row overflow-hidden cursor-default active:cursor-move"
         }
-        onDoubleClick={() => {
-          expandWindow();
-        }}
+        onDoubleClick={expandWindow}
         onMouseOver={() => {
           setIsHover(true);
         }}
@@ -111,9 +124,7 @@ export const WindowHeader = ({
             className={
               "rounded-full w-3 h-3 bg-red-500 hover:bg-red-400 m-auto shadow-md"
             }
-            onClick={() => {
-              closeWindow();
-            }}
+            onClick={closeWindow}
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
           />
           <button
@@ -122,18 +133,14 @@ export const WindowHeader = ({
               "rounded-full w-3 h-3 bg-orange-500 hover:bg-orange-400 m-auto  shadow-md"
             }
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
-            onClick={() => {
-              minWindow();
-            }}
+            onClick={minWindow}
           />
           <button
             aria-label={"expand"}
             className={
               "rounded-full w-3 h-3 bg-green-500 hover:bg-green-400 m-auto  shadow-md"
             }
-            onClick={() => {
-              expandWindow();
-            }}
+            onClick={clickExpand}
             style={!isSelected && !isHover ? { backgroundColor: "gray" } : {}}
           />
         </div>
