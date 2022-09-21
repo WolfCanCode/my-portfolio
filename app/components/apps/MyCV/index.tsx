@@ -10,7 +10,7 @@ export const MyCV = () => {
         title="My-CV"
         width="100%"
         height="98%"
-        src="https://docs.google.com/gview?url=https://www.topcv.vn/xem-cv/AQcCCFNWVAUDBVoIBFJWAARTAQYHUlEAAFcBAAffae&embedded=true"
+        src="https://docs.google.com/gview?url=https://www.topcv.vn/xem-cv/AQcCCFNWVAUDBVoIBFJWAARTAQYHUlEAAFcBAAffae.pdf&embedded=true"
         frameBorder="0"
         scrolling="no"
       />
